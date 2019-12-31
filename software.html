@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<title>Kichael Mo - Software </title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand logo"><img src="img/logo.png" alt="瓢城企训网"></a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
+				<li><a href="mechanical.html"><span class="glyphicon glyphicon-cog"></span>  Mechanical</a></li>
+				<li><a href="electrical.html"><span class="glyphicon glyphicon-flash"></span>  Electrical</a></li>
+				<li class="active"><a href="software.html"><span class="glyphicon glyphicon-console"></span>  Software</a></li>
+				<li><a href="about.html"><span class="glyphicon glyphicon-question-sign"></span>  About</a></li>
+			</ul>	
+		</div>
+	</div>
+</nav>
+
+<div class="jumbotron">
+	<div class="container">
+		<hgroup>
+			<h1>Software</h1>
+			<h4>a summary of the software design for Kichael Mo</h4>
+		</hgroup>
+	</div>
+</div>
+
+<div id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<div class="list-group">
+					<a class="list-group-item" href="#1">1. Description of the Major Functional Elements</a>
+					<a class="list-group-item" href="#2">2. Main Software Functions and Libraries</a>
+					<a class="list-group-item" href="#3">3. Additional Software Functions</a>
+					<a class="list-group-item" href="#4">4. Area of Potential Improvement</a>
+				</div>
+			</div>
+
+
+			<div class="col-md-9 about">
+
+				<a name="1"></a>
+				<h3>Description of the Major Functional Elements</h3>
+				<p>Microcontrollers: TINAH, Arduino</p>
+				<p>Communication: Two digital I/O pins</p>
+				<p>TINAH: tape following, edge following, bridge drops, bin lifting</p>
+				<p>Arduino: Stuffy pick up, IR detection. Used an additional Arduino for more servo PWM outputs, and to be able to have sensitive analog inputs physically away from the motors</p>
+
+				<p>General software structure : 
+Certain trigger points such as detecting the stuffies, edge, IR frequencies, etc are the cues for the Arduino / TINAH to send each other appropriate signals, then the receiving microcontroller counts the amount of ‘HIGH’ signals to know which state the robot is at </p>
+				
+			
+				<p>&nbsp;</p>
+
+
+				<a name="2"></a>
+				<h3>Main Software Functions and Libraries</h3>
+				<h4>MenuToggle()</h4>
+
+				<p>The claws were our means of collecting the ewoks. They needed to be able to pick up ewoks on both sides of the robot. The ewoks had varied distances from the black tape, so we had to design to pick up ewoks at different distances.</p>
+				<ul>
+					<li>Microcontroller = TINAH</li>
+					<li>Library = MenuItem</li>
+					<li>Uses 2 knobs: one to scroll through a list of ‘MenuItems’ and the other to adjust its value. A ‘MenuItem’ is a variable that is adjustable without re-uploading the code since it is stored offline within the TINAH’s non-volatile memory (NVM) system, EEPROM. This system allows immediate fine-tuning of various constants throughout the main code while testing.</li>
+				</ul>
+				<p>&nbsp;</p>
+
+				<h4>Tape Following</h4>
+
+
+				<ul>
+					<li>Microcontroller = TINAH</li>
+					<li>Library = PID</li>
+					<li>Key Functions : getPID(), tapeFollow(), isEdge()</li>
+					<ul>
+						<li>getPID(): gets final proportional, and derivative term from QRD inputs and MenuItem constants. The integral term was not necessary for this competition</li>
+						<li>tapeFollow(): adjusts motor outputs according to the final PID value from getPID(). Uses differential steering to change directions</li>
+						<li>isEdge(): detects if the robot drives off an edge, which would mean either a bridge needs to be dropped or tape following has ended on the competition platform</li>
+					</ul>
+					<li>Pickup : series of servo angles to pick stuffy up and drop into a bin. Controls two servos on each side (left and right) to pick up the stuffies reliably</li>
+				</ul>
+				<p>&nbsp;</p>
+
+				<h4>Ewok/Chewbacca Pickup()</h4>
+				
+				<ul>
+					<li>Microcontroller = Arduino</li>
+					<li>Library = Stuffy</li>
+					<li>Key Functions: sense() & pickup() (for Left and Right separately)</li>
+					<li>Sense: returns true if stuffy detected</li>
+					<ul>
+						<li>Pulses two IR LEDs in 5ms intervals and gets phototransistor readings of both</li>
+						<li>Since the phototransistor reading when the LEDs are off is noise, by comparing the two readings of when the LEDs are on and off, reading filters out the noise. This was required since there was an abundance of ambient light, as well as media cameras in the competition room that may affect IR readings.</li>
+						<li>Looks for two consecutive ‘detection’ readings to return true</li>
+					</ul>
+					<li>Pickup: series of servo angles to pick stuffy up and drop into a bin
+Controls two servos on each side (left and right) to pick up the stuffies reliably</li>
+				</ul>
+
+				<p>&nbsp;</p>
+
+
+				<h4>IR Detection()</h4>
+				
+				<ul>
+					<li>Microcontroller = Arduino</li>
+					<ul>
+						<li>Allows IR filtering circuit and the signal wires to be physically away and separate from the motors, reducing noise issues</li>
+					</ul>
+					<li>Library = FrequencyDetection</li>
+					<li>Key Functions : handle10kHz(), handle1kHz(), is1kHz(), is10kHz()</li>
+					<ul>
+						<li>is1kHz() / is10kHz(): Detection of 1kHz vs 10kHz is differentiated by the ratio of the two analog readings. Since the 1kHz reading has a greater intensity, if \frac{1kHzReading}{10kHzReading} > 3, it is considered a 1kHz reading. This method allowed greater uncertainties with the IR beacon intensities and gain values on our electrical circuit </li>
+						<li>handle10kHz(): if the first detected frequency is 10kHz, waits for it to go back to 1kHz, then back to 10kHz. This allows maximum amount of time for the robot to pick up the second stuffy and pass the archway</li>
+						<li>handle1kHz(): if the first detected frequency is 1kHz, waits for it to detect 10kHz. </li>
+					</ul>
+				</ul>
+
+				<p>&nbsp;</p>
+
+
+				<h4>placeBridge1()</h4>
+				
+				<ul>
+					<li>Microcontroller = Arduino</li>
+					<li>No Library, part of TINAH main code</li>
+					<li>Very similar to placeBridge1(), however with different constants and encoder counts on the wheels</li>
+				</ul>
+
+				<p>&nbsp;</p>
+
+				<h4>FirstBinLift/Lower()</h4>
+				
+				<ul>
+					<li>Microcontroller = Arduino</li>
+					<li>No Library, part of TINAH main code</li>
+					<li>Once the robot passes the archway and the Stormtrooper, Arduino sends HIGH signals to the TINAH, which then initiates lifting and lowering the first bin</li>
+					<li>Lifts the first bin until a certain number of encoder counts (3rd encoder on the lift motor), then lowers the bin platform again. Encoder counts adjustable via MenuToggle()</li>
+				</ul>
+
+				<p>&nbsp;</p>
+
+				<h4>placeBridge2()</h4>
+				
+				<ul>
+					<li>Microcontroller = Arduino</li>
+					<li>No Library, part of TINAH main code</li>
+					<li>The sequence of encoder count values to adjust the location of the robot to drop and place the bridge, then go across it before starting to detect the IR beacon</li>
+					<li>Encoder counts adjustable through MenuToggle()</li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<h4>Suspension Bridge Edge Following()</h4>
+				
+				<ul>
+					<li>Microcontroller = Arduino</li>
+					<li>Library : EdgePID</li>
+					<li>Very similar to tape following. However, follows the edge, the goal being only having one QRD off the edge at all times (uses set of two QRDs on the right side of the robot).</li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<h4>SecondBinLift/Lower()</h4>
+				
+				<ul>
+					<li>Microcontroller = Arduino</li>
+					<li>No Library, part of TINAH main code</li>
+					<li>Similar to FirstBinLift/Lower(), however with a different number of encoder counts on the lift motor</li>
+				</ul>
+                
+                <p>&nbsp;</p>
+                <a name="3"></a>
+                <h3>Additional Software Functions</h3>
+				<h4>debounce()</h4>
+
+				<p>Debouncing loops for start button, stop button, and digital inputs to prevent motor noise triggering parts of the code</p>
+
+				<p>&nbsp;</p>
+				<a name="4"></a>
+				<h3>Area of Potential Improvement</h3>
+				<ul>
+				<li>Organize code in a way that doesn’t strictly rely on ‘counts’, make it more robust, so that the robot can continue even with missing a certain checkpoint, etc</li>
+				<li>Write descriptive comments so all teammates are fully aware of the software logics</li>
+			    </ul>
+
+			    <p>&nbsp;</p>
+			    
+			    <p>To view the Github repository for the Kichael Mo Project, please click 
+				<a href="https://github.com/dvirhilu10/ENPH253_2018_Team10">here</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer id="footer">
+	<div class="container">
+		<p> Undergraduate | Engineering | Project </p>
+		<p> © 2018 by Kichael Mo robot team. Powered by Bootstrap.</p>
+	</div>
+</footer>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

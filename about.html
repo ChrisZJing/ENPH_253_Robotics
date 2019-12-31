@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<title>Kichael Mo - About </title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand logo"><img src="img/logo.png" alt="Kichael_Mo_Logo"></a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
+				<li><a href="mechanical.html"><span class="glyphicon glyphicon-cog"></span>  Mechanical</a></li>
+				<li><a href="electrical.html"><span class="glyphicon glyphicon-flash"></span>  Electrical</a></li>
+				<li><a href="software.html"><span class="glyphicon glyphicon-console"></span>  Software</a></li>
+				<li class="active"><a href="about.html"><span class="glyphicon glyphicon-question-sign"></span>  About</a></li>
+			</ul>	
+		</div>
+	</div>
+</nav>
+
+<div class="jumbotron">
+	<div class="container">
+		<hgroup>
+			<h1>About</h1>
+			<h4>Competition Rules | Challenges Encountered | Lessons Learned | Team Members </h4>
+		</hgroup>
+	</div>
+</div>
+
+<div id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<div class="list-group">
+					<a class="list-group-item" href="#1">1. Competiton Rules</a>
+					<a class="list-group-item" href="#2">2. Analysis on Competition Day</a>
+					<a class="list-group-item" href="#3">3. Lessons Learned</a>
+					<a class="list-group-item" href="#4">4. Team Members and Contributions</a>
+
+				</div>
+			</div>
+			<div class="col-md-9 about">
+				<a name="1"></a>
+				<h3>Competiton Rules</h3>
+				<img src="img/surface.png" alt="HTML5 Icon" align="middle" style="width:840px;height:600px;">
+				<h4 align="center">Image of the Surface Used During the Competition</h4>
+				<p>The Surface: </p>
+				<ul>
+					<li>The competition surface is made of white-painted wood of an area approximately 8 ft. x 8 ft. with multiple levels (bottom-to-top distance up to 12 in.) including a ramp of 7 degrees incline</li>
+					<li>There are two sizeable gaps (6 in. wide) that the robot must navigate through</li>
+					<li>A path made of black electrical tape run through the first 2/3 of the surface before it ends abruptly at an edge</li>
+					<li>An IR beacon is located next to the entrance to the archway. It will emit a 1 kHz IR beam when the arch is alarmed, and 10 kHz when it is not. The robot must cross the archway completely within 5 seconds of the start of the 10 kHz signal. Otherwise, the stationary circular platform will start to rotate</li>
+					<li>Four Ewoks (stuffed toys) are placed on the surface (three are approximately 6 in. from the tape, and a fourth located on the first tower). The bigger-sized Chewbacca (stuffed toy) is located on the second tower</li>
+					<li>A 12 in. wide suspension bridge with no railings connects the two towers is made of flexible wood and is approximately 4.5 ft. long</li>
+					<li>There are two zip lines approximately 16 in. above the surface, one connecting the plateau and Tower 1, the other connecting Tower 2 and the starting place. They are made of steel tubes with 29.5 mm diameter</li>
+				</ul>
+				<img src="img/map.png" alt="HTML5 Icon" align="middle" style="width:840px;height:489px;">
+				<h4 align="center">Competition Surface Map</h4>
+				<p>General Rules: </p>
+				<ul>
+					<li>Scoring​ - Scoring is as follows:  + 1 point for every Ewok ending the heat in the Start volume, and + 3pts for Chewie. For the purpose of scoring, the start area is the area contained by the edge of the ramp, the edges of the surface, and the edge of the plateau (including the gap between the ramp and the plateau). This area is projected vertically indefinitely to produce the Start Volume. In case of a points tie, the first team to score its total number of points wins</li>
+					<li>Multiple Runs During One Heat, and Restarting Robots​ - A Robot which successfully completes a Run for a score can be restarted to attempt a higher score. Scoring is not cumulative during the Heat, only the single-highest scoring Run during the Heat will count. Robots may also be rescued by the team and restarted as many times as desired during the heat, for any reason. This includes but is not limited to:  1. Falling off the Playing Surface. 2. Getting lost or stuck on the Playing Surface. 3. Falling off the ramp, getting stuck.  The time during the Heat does not stop for a restart. Any plushies moved during the run will be replaced to their original positions, and the rotating platform will be reset</li>
+					<li>Time Limit​ – Heats are a maximum of 2 minutes. Additional time may be allowed in the finals to resolve heats that are tied at the end of two minutes. Judges may choose to end a heat early if there is a clear winner during the heat</li>
+					
+				</ul>
+				<p>To view the official complete package of the competition rules, please click 
+				<a href="https://docs.google.com/document/d/18rYIVlMZeD559deR7-5YjfQzZz4BeeS6pr8FI5Qlm8Q/edit">here</a>.
+				</p>
+				<p>&nbsp;</p>
+
+
+				<a name="2"></a>
+				<h3>Analysis on Competition Day</h3>
+				<ul>
+					<li>Although it is true that the size of our robot was one of our biggest challenges, making a robust software may have been able to solve the issue. On competition day, one of our encoder counting delays were too long, which made it difficult to properly execute the rest of the code. It was difficult since the MenuItem values that worked reliably the night before were not the same on competition day. If we found the relationship between the MenuItem values that affect each other more thoroughly, we may have been able to solve the issue</li>
+					<li>It seemed that the robot was making turns that were too wide, suggesting that the line following constants should have been tuned more finely and carefully the day before the competition</li>
+					<li>Furthermore, the apparent inconsistency over battery voltage suggests that the way we were getting encoder readings was somewhat faulty. It would have been beneficial to conduct more tests to ensure we're not missing any encoder ticks by having the wheels spin too fast. It would also have been beneficial to write more robust software for the encoders to ensure that both encoders spun the correct number of ticks rather than just one of them</li>
+				</ul>
+				<p>&nbsp;</p>
+
+				<a name="3"></a>
+				<h3>Lessons Learned</h3>
+				<h4>Technical Takeways</h4>
+				<ul>
+					<li>Ways to minimize the impact of motor noise</li>
+					<li>Use proper polarized connectors for major connections</li>
+					<li>Structure software so that even if the if statements were executed out of order, code will still function properly (make detailed if statement boolean expressions)</li>
+					<li>Add protection circuits to protect input pins of microcontrollers</li>
+					<li>Take advantage of proper version control</li>
+				</ul>
+				<p>&nbsp;</p>
+
+				<h4>Project Management Takeaways</h4>
+				<ul>
+					<li>Always keep teammates updated: Reduces risk of two people working on the same thing accidentally</li>
+					<li>Always share files: This way anyone can edit things when required,  and everyone is updated with the most recent version of the design</li>
+					<li>Always record todo-lists or reminders for the next day: Can be especially useful when everyone is tired</li>
+					<li>Add protection circuits to protect input pins of microcontrollers</li>
+				</ul>
+
+				<p>&nbsp;</p>
+
+				<h4>Recommendations for future / what we would do differently</h4>
+				<ul>
+					<li>Organize code in a way that doesn’t strictly rely on ‘counts’, make it more robust, so that the robot can continue even with missing a certain checkpoint, etc</li>
+					<li>Write descriptive comments so all teammates are fully aware of the software logics</li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<a name="4"></a>
+				<h3>Team Members and Contributions</h3>
+				<img align = "middle" src="img/team.jpg" alt="HTML5 Icon" class="center" style="width:840px;height:629px;">
+				<h4 align="center">Team 10 Group Photo - Kota (upper left), Jordan (lower left), Dvir (lower right) and Chris (upper right)</h4>
+				<p>&nbsp;</p>
+				<h4>Kota Chang - ELEC/Software</h4>
+				<ul>
+					<li>Shared a lot of the electrical and software tasks with Dvir Hilu which also included testing and fine tuning MenuItems</li>
+					<li>Worked on some simple CAD and mechanical design to further improve the robot’s functionalities</li>
+				</ul>
+
+				<h4>Dvir Hilu - ELEC/Software</h4>
+				<ul>
+					<li>Designed and fabricated electrical portion of the robot (with Kota)</li>
+					<li>Designed and wrote software for the robot (with Kota and Chris)</li>
+					<li>Tested and Tuned robot operation in the integration stage (with all)</li>
+				</ul>
+
+				<h4>Chris Jing - MECH/Software</h4>
+				<ul>
+					<li>Designed, built and tested the Bridging System and the Lift Mechanism for the robot</li>
+					<li>Drafted various early-stage testing program suites in Arduino/C++ for the robot</li>
+				</ul>
+
+				<h4>Jordan Yarschenko -  MECH/ELEC</h4>
+				<ul>
+					<li>Design/CAD: Drivetrain, Chassis, Baskets + Hooks, Claws, Bridge holder</li>
+					<li>Fabrication: Chassis, Drivetrain, Lift + Baskets, Claws, Bridges</li>
+					<li>Prototyping/Testing (functionality testing, not full robot testing): Lift + Baskets, Drivetrain, Claws</li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer id="footer">
+	<div class="container">
+		<p> Undergraduate | Engineering | Project </p>
+		<p> © 2018 by Kichael Mo robot team. Powered by Bootstrap.</p>
+	</div>
+</footer>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

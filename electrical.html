@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<title>Kichael Mo - Electrical</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand logo"><img src="img/logo.png" alt="瓢城企训网"></a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
+				<li><a href="mechanical.html"><span class="glyphicon glyphicon-cog"></span>  Mechanical</a></li>
+				<li class="active"><a href="electrical.html"><span class="glyphicon glyphicon-flash"></span>  Electrical</a></li>
+				<li><a href="software.html"><span class="glyphicon glyphicon-console"></span>  Software</a></li>
+				<li><a href="about.html"><span class="glyphicon glyphicon-question-sign"></span>  About</a></li>
+			</ul>	
+		</div>
+	</div>
+</nav>
+
+<div class="jumbotron">
+	<div class="container">
+		<hgroup>
+			<h1>Electrical</h1>
+			<h4>a summary of the electrical design for Kichael Mo</h4>
+		</hgroup>
+	</div>
+</div>
+
+<div id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<div class="list-group">
+					<a class="list-group-item" href="#1">1. Power Distribution</a>
+					<a class="list-group-item" href="#2">2. Stuffy Detection Circuit</a>
+					<a class="list-group-item" href="#3">3. Encoder Debouncing Circuit</a>
+					<a class="list-group-item" href="#4">4. H Bridge Circuit</a>
+					<a class="list-group-item" href="#5">5. Infrared System Circuit</a>
+					<a class="list-group-item" href="#6">6. Area of Potential Improvement</a>
+
+				</div>
+			</div>
+
+			<div class="col-md-9 about">
+				<a name="1"></a>
+				<h3>Power Distribution</h3>
+				<img align = "middle" src="img/Power_Distribution.jpg" alt="HTML5 Icon" class="center" style="width:840px;height:473px;">
+				<h4 align="center">Flow Chart of the Power Distribution for Kichael Mo</h4>
+				<p>&nbsp;</p>
+				<ul>
+					<li>To power sensitive circuits and the Arduino with a separate battery source from the motors, we laid out the power distribution board. (TINAH and motors had to be powered off the 16V LiPo Battery) 
+					</li>
+					<li>Analog circuits and the Arduino were then kept at a distance away from the motors to further prevent noise issues</li>
+				</ul>
+					<img align = "middle" src="img/elec1.png" alt="HTML5 Icon" class="center" style="width:840px;height:358px;">
+					<h4 align="center">Bottom and Top View of the Power Distribution Circuit Board</h4>
+					<p>&nbsp;</p>
+				<ul>
+					<li>Power distribution circuit board was smothered in solder to make thicker connections to support more current and noise before experiencing a voltage fluctuation </li>
+					<li>Thick cables were used from the power distribution circuit for the same reason</li>
+					<li>Decoupling capacitors were used on all circuit boards, motor leads, and wire connections where they could be put (470µF for energy storage and 100nF for dealing with high frequencies)</li>
+				</ul>
+				<p>&nbsp;</p>
+                
+                <a name="2"></a>
+				<h3>Main Circuit Boards</h3>
+				<h4>Stuffy Detection Circuit</h4>
+				<img align = "middle" src="img/elec2.png" alt="HTML5 Icon" class="center" style="width:800px;height:477px;">
+				<h4 align="center">Schematic and Image of the Stuffy Detection Circuit</h4>
+				<p>&nbsp;</p>
+
+				<ul>
+					<li>The stuffy detection circuit is essentially an IR emitter-detector pair that sense the stuffies through IR reflection</li>
+					<li>The IR LEDs had to be controlled by an N channel MOSFET since the Arduino could not provide enough current</li>
+					<li>2 LEDs were used to increase the brightness and allow to detect from farther away</li>
+					<li>A value of 1.5kΩ was chosen for R4 to ensure that readings are high enough without the risk of clipping</li>
+					<li>Voltage was regulated to 5V using an LM7805 linear voltage regulator</li>
+					<li>The Arduino pulsed the IR LEDs at 5ms intervals and subtracted QSD readings to filter out noise (more information in the software section)</li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<a name="3"></a>
+				<h4>Encoder Debouncing Circuit</h4>
+				<img align = "middle" src="img/elec3.png" alt="HTML5 Icon" class="center" style="width:800px;height:305px;">
+				<h4 align="center">Schematic and Image of the Lift Encoder Debouncing Circuit</h4>
+				<p>&nbsp;</p>
+				
+				<ul>
+					<li>A circuit board constructed to take the outputs from the rotary encoders and debounce them</li>
+					<li>The signal goes through an RC circuit and then into an NPN BJT arrangement that acts as a Schmitt Trigger</li>
+					<li>R6 was chosen to adjust the HIGH/LOW thresholds of the Schmitt Trigger as well as the Hysteresis gap to the desired values</li>
+					<li>The capacitors for the lift and wheel encoder circuits were different because the lift encoder spun faster than the wheel encoders</li>
+					<li>A possible design improvement would be to put a diode in parallel with R2 (so R2 is bypassed while C1 is charging) and change R2 to 10kΩ so that discharge and charge times are equal</li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<a name="4"></a>
+				<h4>H Bridge Circuit</h4>
+				<img align = "middle" src="img/elec4.png" alt="HTML5 Icon" class="center" style="width:800px;height:254px;">
+				<h4 align="center">Schematic and Image of the H Bridge Circuit</h4>
+				<p>&nbsp;</p>
+				
+				<ul>
+					<li>Design credit: Scott Lawson</li>
+					<li>H bridge to control motor directions using four 5.1V Zener diodes, two P-channel MOSFETs, and two N-channel MOSFETs</li>
+					<li>This H Bridge works well with TINAH’s motor outputs being 10-3V for HIGH and 0-3V for LOW, which would be the input voltages for IN A and IN B</li>
+					<li>Used this design instead of the traditional H Bridge schematic with BJTs because it is smaller and easier to troubleshoot </li>
+					<li>VCC has to remain above 12 V. However, this was not an issue since the LiPo battery voltage reader would not let the cells discharge to 12 V</li>
+					<li>Any additional capacitors are decoupling capacitors for noise</li>
+
+				</ul>
+
+				<p>&nbsp;</p>
+				<a name="5"></a>
+				<h4>Infrared System Circuit</h4>
+				<img align = "middle" src="img/elec5.png" alt="HTML5 Icon" class="center" style="width:800px;height:761px;">
+				<h4 align="center">Flow Chart (top) and Image (bottom) of the IR Detection Circuit</h4>
+				<p>&nbsp;</p>
+				
+				<ul>
+					<li>Circuit built to detect the IR signal emitted by R2D2</li>
+					<li>Outputs a DC signal proportional to the amplitude of either a 10kHz signal or 1kHz signal</li>
+					<li>IR beacon emitted a 1kHz signal much stronger than the 10kHz signal, so circuit was filtered first (to avoid 1kHz signal clipping) and split up right after the DC block</li>
+					<li>Two 8V LiPo batteries were used to give positive and negative voltage rails to power Op-Amps</li>
+				</ul>
+
+				<p>&nbsp;</p>
+
+				<h4>Component 1: IR Detection</h4>
+				
+				<ul>
+					<li>IR detection done using a QSD124 phototransistor</li>
+					<li>Phototransistor power input was regulated to 5V using an LM7805 voltage regulator</li>
+					<li>1kΩ was chosen to allow for maximum signal while avoiding trouble with the rise and fall time of the phototransistor as well as clipping for the 1kHz signal</li>
+					<li>A buffer was used to isolate this section from the DC block</li>
+				</ul>
+
+				<img align = "middle" src="img/elec6.png" alt="HTML5 Icon" class="center" style="width:800px;height:286px;">
+				<h4 align="center">IR Detection Circuit (left) and DC Block Circuit (right)</h4>
+				<p>&nbsp;</p>
+
+				<h4>Component 2: DC Block</h4>
+				<ul>
+					<li>DC and low-frequency noise signals were blocked using a low pass RC filter with a cutoff frequency of about 750Hz</li>
+					<li>Although this DC block is done in the filter stage as well, adding another filter made it easy to debug the ambient noise problem and added a steeper amplitude drop off for these unwanted signals</li>
+				</ul>
+
+				<p>&nbsp;</p>
+
+				<h4>Component 3: Signal Filtering</h4>
+				<img align = "middle" src="img/elec7.png" alt="HTML5 Icon" class="center" style="width:800px;height:206px;">
+				<h4 align="center">1 kHz Filter Circuit (left) and 10 kHz Filter Circuit (right)</h4>
+				<p>&nbsp;</p>
+				
+				<ul>
+					<li>Bandpass filters were used to filter out any signals that are not desired</li>
+					<li>The two cutoff frequencies were set to be just below and just above the desired frequency value (either 1kHz or 10kHz) to create a steep drop off for other frequencies</li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<h4>Component 4: Signal Amplification</h4>
+				<img align = "middle" src="img/elec8.png" alt="HTML5 Icon" class="center" style="width:800px;height:174px;">
+				<h4 align="center">1 kHz Amplifier Circuit (left) and 10 kHz Amplifier Circuit (right)</h4>
+				<p>&nbsp;</p>
+				
+				<ul>
+					<li>Amplification was done using an inverting amplifier circuit</li>
+					<li>Gain value for the 1kHz signal was much smaller (3.3) compared to 10kHz (13) because the 1kHz signal came out of the beacon much stronger than the 10kHz signal</li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<h4>Component 5: Peak Detection</h4>
+				<img align = "middle" src="img/elec9.png" alt="HTML5 Icon" class="center" style="width:800px;height:364px;">
+				<h4 align="center">Peak Detector Circuit</h4>
+				<p>&nbsp;</p>
+				
+				<ul>
+					<li>A super diode configuration (acts like a perfect diode without the 0.7V drop)  was used to rectify the AC signal</li>
+					<li>Time constant was chosen to be large so that capacitor does not have enough time to discharge before the AC signal rises again</li>
+					<li>Same rectifier circuit was designed for 1kHz and 10kHz signals</li>
+					<li>A buffer and Zener diode protection circuit was used to protect the analog input of the microcontroller</li>
+				</ul>
+
+				<a name="6"></a>
+				<h3>Area of Potential Improvement</h3>
+				<h4>Noise isolation from the start:</h4>
+				<ul>
+					<li>Use thicker power distribution wires from the start</li>
+					<li>Use decoupling capacitors as frequently and wherever possible (circuit boards, motor leads, wiring connections) </li>
+					<li>Should have designed initially to have the TINAH and all wires as far away from the motors as possible to avoid noise through magnetic induction (TINAH board and many of the wires were very close to the motors in our current design)</li>
+				</ul>
+
+				<h4>Covers and Cases for all Circuit Boards</h4> 
+				<ul>
+					<li>Conceal IR circuits, make holders for phototransistors and LEDs, and solder phototransistors with wires away from circuit boards rather than place them directly on</li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer id="footer">
+	<div class="container">
+		<p> Undergraduate | Engineering | Project </p>
+		<p> © 2018 by Kichael Mo robot team. Powered by Bootstrap.</p>
+	</div>
+</footer>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

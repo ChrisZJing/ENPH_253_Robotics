@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<title>Kichael Mo - Mechanical </title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand logo"><img src="img/logo.png" alt="瓢城企训网"></a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
+				<li class="active"><a href="mechanical.html"><span class="glyphicon glyphicon-cog"></span>  Mechanical</a></li>
+				<li><a href="electrical.html"><span class="glyphicon glyphicon-flash"></span>  Electrical</a></li>
+				<li><a href="software.html"><span class="glyphicon glyphicon-console"></span>  Software</a></li>
+				<li><a href="about.html"><span class="glyphicon glyphicon-question-sign"></span>  About</a></li>
+			</ul>	
+		</div>
+	</div>
+</nav>
+
+<div class="jumbotron">
+	<div class="container">
+		<hgroup>
+			<h1>Mechanical</h1>
+			<h4>a summary of the mechanical design for Kichael Mo</h4>
+		</hgroup>
+	</div>
+</div>
+
+<div id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<div class="list-group">
+					<a class="list-group-item" href="#1">1. Drive Train</a>
+					<a class="list-group-item" href="#2">2. Pickup Claws</a>
+					<a class="list-group-item" href="#3">3. Platform Lift</a>
+					<a class="list-group-item" href="#4">4. Bridges</a>
+					<a class="list-group-item" href="#5">5. Baskets</a>
+					<a class="list-group-item" href="#6">6. Chassis</a>
+					<a class="list-group-item" href="#7">7. Area of Potential Improvement</a>
+				</div>
+			</div>
+
+
+			<div class="col-md-9 about">
+				<a name="0"></a>
+				<img align = "middle" src="img/mech0.png" alt="HTML5 Icon" class="center" style="width:840px;height:319px;">
+				<h4 align="center">Assembled (left) and Breakdown (right) CAD Model for Kichael Mo in Onshape</h4>
+				<p>&nbsp;</p>
+
+				<a name="1"></a>
+				<h3>Drive Train</h3>
+				<img align = "middle" src="img/mech1.png" alt="HTML5 Icon" class="center" style="width:840px;height:319px;">
+				<h4 align="center">CAD model for the wheel (left), back of Drive Train (middle) and front of Drive Train (right)</h4>
+				<p>&nbsp;</p>
+
+				<p>The goal of the drivetrain was to be simple and well built. This is the foundation of all of the movement of the robot and needed to be robust. </p>
+				<ul>
+					<li>Custom 3D printed wheels: With holes for fastening gears and slots for O-rings for additional friction</li>
+					<li>Laser cut delrin gears: With 1:3 gear reduction</li>
+					<li>Rotary encoder: For precise and accurate driving, allowed us to drive in straight lines, or keep track of how far we’ve driven</li>
+					<li>Tennis ball stabilizers: Covered with a slippery plastic material to reduce friction for smooth turning. Used instead of casters to improve consistency of PID tape following</li>
+				</ul>
+			
+				<p>&nbsp;</p>
+
+
+				<a name="2"></a>
+				<h3>Pickup Claws</h3>
+				<img align = "middle" src="img/mech2.png" alt="HTML5 Icon" class="center" style="width:840px;height:270px;">
+				<h4 align="center">Right Claw (left), Left Claw (middle) and CAD model for the claw(right)</h4>
+				<p>&nbsp;</p>
+
+				<p>The claws were our means of collecting the ewoks. They needed to be able to pick up ewoks on both sides of the robot. The ewoks had varied distances from the black tape, so we had to design to pick up ewoks at different distances.</p>
+				<ul>
+					<li>Larger servo motor to control the rotation of the entire claw assembly</li>
+					<li>Smaller servo to control the opening and closing of the claw</li>
+					<li>Custom shaped claws that squished the stuffies into the center of the claws when closed</li>
+				</ul>
+                
+                <a name="3"></a>
+				<h3>Platform Lift</h3>
+				<img align = "middle" src="img/mech3.png" alt="HTML5 Icon" class="center" style="width:840px;height:329px;">
+				<h4 align="center">CAD model for the Rack (left), the Pinion Platform (middle) and the image of the lift (right)</h4>
+				<p>&nbsp;</p>
+
+				<p>The lifting mechanism in the robot was for lifting up baskets that contained the collected ewoks. These baskets would then hook onto the zip lines throughout the course, sending the ewoks start and rescuing them.</p>
+				<ul>
+					<li>Rack and pinion style lift for linear motion</li>
+					<li>Dual pinion system to create a stable lifting platform even under heavy load</li>
+					<li>Powered by a high-efficiency, low power motor</li>
+					<li>Precision waterjet cut polycarbonate rack, and ABS pinion gears encased in an aluminum frame</li>
+				</ul>
+
+				<a name="4"></a>
+				<h3>Bridges</h3>
+				<img align = "middle" src="img/mech4.png" alt="HTML5 Icon" class="center" style="width:840px;height:247px;">
+				<h4 align="center">Image of the two bridges used in the competition (left); Design iteration for the second bridge (right)</h4>
+				<p>&nbsp;</p>
+
+				<p>Our bridges allowed us to tackle the challenge of crossing a gap. The robot had two bridges, one for the first gap and one for the second gap.</p>
+				<ul>
+					<li>Crafted from aluminium to be both rigid and lightweight</li>
+					<li>Shaped to elegantly fall into the gaps</li>
+					<li>Stoppers on the bottom stopped the bridge from shuffling around while the robot drove over them</li>
+				</ul>
+
+				<a name="5"></a>
+				<h3>Baskets</h3>
+				<img align = "middle" src="img/mech5.png" alt="HTML5 Icon" class="center" style="width:840px;height:680px;">
+				<h4 align="center">Image of the baskets (upper) and its CAD model (lower)</h4>
+				<p>&nbsp;</p>
+
+				<p>The baskets had to hold the ewoks. Our design incorporated the use of two baskets; One that would be released early in the course to rescue two ewoks, and a second that would be released at the end of the course to rescue the rest of the ewoks.</p>
+				<ul>
+					<li>T-shaped baskets made efficient use of space, being wider where the stuffies were dropped in</li>
+					<li>Mesh netting on the bottom of the baskets created more space for the ewoks to go, while ensuring the baskets consumed a relatively small space</li>
+					<li>3D printed hooks that contour to the shape of the zipline</li>
+				</ul>
+
+				<a name="6"></a>
+				<h3>Chassis</h3>
+				<img align = "middle" src="img/mech6.png" alt="HTML5 Icon" class="center" style="width:840px;height:310px;">
+				<h4 align="center">Image of the two bridges used in the competition (left); Design iteration for the second bridge (right)</h4>
+				<p>&nbsp;</p>
+
+				<p>The chassis is what brought together all of these different mechanical systems. The shape of the chassis was not pre-defined, but rather changed to fit the needs of the robot.</p>
+				<ul>
+					<li>Made of HDF, a strong and lightweight material</li>
+					<li>Single piece side panels made the robot’s back and front structural connected, increasing the overall rigidity of the robot</li>
+					<li>Custom box joint edges removed the necessity for a lot of fasteners, which decreased the overall weight of the robot</li>
+				</ul>
+
+				<a name="7"></a>
+				<h3> Area of Potential Improvement</h3>
+
+				<p>If we were to remake this robot and change some of the critical mechanical systems, we would have taken one of two different approaches.</p>
+				<ul>
+					<li>Change our bridge holding container: The issue here was that although the bridge system worked wonderfully, it restricted many of the other mechanical systems. For example, the baskets had to be released out of the back of the robot, the size of the baskets were restricted, we could not pick up ewoks from the front if we wanted to, we could not have any signal detection on the front of the robot. Note that these are minor changes, and although they may have been nice, they were not critical </li>
+					<li>Change to a tank tread drive train system: This would have removed the need for having bridges, opening up the opportunity for some completely different designs. However, tank treads had their drawbacks with slipping and tape following, so it would not have come without its own challenges</li>
+				</ul>
+
+				
+				
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer id="footer">
+	<div class="container">
+		<p> Undergraduate | Engineering | Project </p>
+		<p> © 2018 by Kichael Mo robot team. Powered by Bootstrap.</p>
+	</div>
+</footer>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>
